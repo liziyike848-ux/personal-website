@@ -49,10 +49,10 @@ h1 { font-size: clamp(33px, 3.5vw, 47px); font-weight: 500; line-height: 1.6; le
 h1 em { font-style: normal; color: var(--accent); }
 .opening-description { margin-top: 28px; color: var(--muted); font-size: 17px; line-height: 2; }
 .text-actions { margin-top: 31px; display: flex; gap: 16px; flex-wrap: wrap; font: 600 14px/1.4 var(--sans); }
-.text-actions a { display: inline-flex; align-items: center; justify-content: center; min-width: 180px; min-height: 52px; padding: 0 24px; border: 2px solid var(--ink); border-radius: 3px; color: var(--ink); background: transparent; transition: color .16s ease, background-color .16s ease, border-color .16s ease; }
+.text-actions a { display: inline-flex; align-items: center; justify-content: center; min-width: 180px; min-height: 52px; padding: 0 24px; border: 2px solid var(--ink); border-radius: 3px; color: var(--ink); background: transparent; transition: color .16s ease, background-color .16s ease, border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
 .text-actions a:first-child { color: var(--paper); background: var(--ink); }
-.text-actions a:hover, .text-actions a:focus-visible { color: var(--paper); background: var(--accent); border-color: var(--accent); }
-.text-actions a:active { background: var(--olive); border-color: var(--olive); }
+.text-actions a:hover, .text-actions a:focus-visible { color: var(--paper); background: var(--accent); border-color: var(--accent); transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+.text-actions a:active { background: var(--accent); border-color: var(--accent); transform: translate(0, 0); box-shadow: none; }
 .text-actions a span { margin-left: 10px; }
 .opening-footer { margin-top: auto; font-size: 11px; }
 .chapter-header { margin-bottom: 33px; }
@@ -169,7 +169,7 @@ body:has(dialog[open]) { overflow: hidden; }
   .dialog-article h2 { font-size: 24px; }
 }
 @media (max-width: 360px) { .book-layout { padding: 0 20px; } .about-facts { grid-template-columns: 1fr; } h1 { font-size: 26px; } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .text-actions a { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .text-actions a { transition: none; } .text-actions a:hover, .text-actions a:focus-visible { transform: none; } }
 @media print {
   body { background: white; }
   .book-layout { display: block; max-width: 800px; padding: 0; }
