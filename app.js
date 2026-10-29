@@ -3,39 +3,38 @@
   const navigation = [...document.querySelectorAll(".chapter-nav a")];
   const progress = document.getElementById("reading-progress");
   const topbar = document.querySelector(".topbar");
-  let frame = 0;
   let activeId = "";
 
-  function updateReading() {
-    frame = 0;
-    const page = document.documentElement;
-    const distance = page.scrollHeight - window.innerHeight;
-    const percentage = distance > 0 ? Math.round(Math.max(0, Math.min(1, window.scrollY / distance)) * 100) : 100;
-    progress.value = percentage;
-    progress.textContent = `${percentage}%`;
-    const probe = topbar.getBoundingClientRect().bottom + 100;
-    let current = chapters[0];
-    for (const chapter of chapters) {
-      if (chapter.getBoundingClientRect().top <= probe) current = chapter;
-    }
-    if (distance > 0 && window.scrollY >= distance - 2) current = chapters[chapters.length - 1];
-    if (activeId === current.id) return;
-    activeId = current.id;
+  function setActiveNavigation(id) {
+    if (activeId === id) return;
+    activeId = id;
     navigation.forEach(link => {
       const active = link.hash === `#${activeId}`;
       if (active) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
     });
   }
-  function scheduleUpdate() {
-    if (!frame) frame = requestAnimationFrame(updateReading);
+  function updateReading() {
+    const page = document.documentElement;
+    const distance = page.scrollHeight - window.innerHeight;
+    const ratio = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 1;
+    progress.style.transform = `scaleX(${ratio})`;
+    progress.setAttribute("aria-valuenow", String(Math.round(ratio * 100)));
+    topbar.classList.toggle("is-scrolled", window.scrollY > 20);
   }
-  window.addEventListener("scroll", scheduleUpdate, { passive: true });
-  window.addEventListener("resize", scheduleUpdate);
-  window.addEventListener("pageshow", scheduleUpdate);
-  document.querySelectorAll("details").forEach(details => details.addEventListener("toggle", scheduleUpdate));
-  new ResizeObserver(scheduleUpdate).observe(document.querySelector("main"));
+  window.addEventListener("scroll", updateReading, { passive: true });
+  window.addEventListener("resize", updateReading);
+  window.addEventListener("pageshow", updateReading);
+  document.querySelectorAll("details").forEach(details => details.addEventListener("toggle", updateReading));
+  new ResizeObserver(updateReading).observe(document.querySelector("main"));
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveNavigation(entry.target.id);
+    });
+  }, { threshold: 0.4 });
+  chapters.forEach(chapter => observer.observe(chapter));
 
   const dialogs = [...document.querySelectorAll(".essay-dialog")];
   const articleLinks = [...document.querySelectorAll("[data-dialog]")];
@@ -69,7 +68,7 @@
         history.replaceState(null, "", returnHash || "#thoughts");
         if (opener) opener.focus({ preventScroll: true });
       }
-      scheduleUpdate();
+      updateReading();
     });
   });
   window.addEventListener("hashchange", syncArticle);

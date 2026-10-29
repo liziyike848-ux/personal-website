@@ -7,14 +7,14 @@
   <meta name="description" content="沈志远的个人主页。关于产品、运营、AI，以及观察与实践中的成长记录。">
   <meta name="theme-color" content="#f6f1e7">
   <title>沈志远 · 在观察中理解，在实践中成长</title>
-  <link rel="stylesheet" href="styles.css?v=floating-buttons-1">
-  <script src="app.js?v=identity-nav-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=fullscreen-chapters-1">
+  <script src="app.js?v=continuous-progress-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="book-layout">
     <header class="topbar">
-      <progress id="reading-progress" max="100" value="0" aria-label="页面阅读进度">0%</progress>
+      <div class="reading-progress-track"><div id="reading-progress" class="reading-progress" role="progressbar" aria-label="页面阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
       <a class="site-identity" href="#opening" aria-label="Zhiyuan Shen，回到开篇"><span class="identity-dot" aria-hidden="true"></span>Zhiyuan Shen</a>
       <nav class="chapter-nav" aria-label="章节目录">
         <a href="#opening" aria-current="location">开篇</a>
@@ -31,25 +31,20 @@
         <div class="running-head"><span>ZHIYUAN SHEN / PERSONAL NOTES</span><span>第一章 · 开篇</span></div>
         <div class="opening-body">
           <p class="eyebrow">很高兴，在这里与你相遇。</p>
-          <h1 id="opening-title">你好，我是沈志远。<br>在观察中理解，<br><em>在实践中成长。</em></h1>
-          <p class="opening-description">我关注产品与运营，也关心技术如何走进人的日常。<br class="desktop-break">这里放着我的经历、思考，以及还在慢慢展开的故事。</p>
-          <div class="text-actions"><a href="#experience">从我的经历读起 <span aria-hidden="true">↗</span></a><a href="#about">先认识一下我 <span aria-hidden="true">→</span></a></div>
+          <h1 id="opening-title"><span>你好，我是沈志远。</span><span>这里记录着我的思考、经历，</span><em>和仍在展开的故事。</em></h1>
+          <div class="text-actions"><a href="#about">先认识一下我 <span aria-hidden="true">→</span></a><a href="#experience">从我的经历读起 <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="opening-footer"><span>慢慢往下读，也可以从目录自由探索。</span><a href="#about" aria-label="继续阅读关于我">向下翻一页 <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section class="chapter" id="about" aria-labelledby="about-title">
-        <header class="chapter-header"><p class="eyebrow">02 / 关于我</p><h2 id="about-title">先从我关心的事情说起。</h2><p class="chapter-intro">人与技术之间，有许多值得认真理解的问题。</p></header>
-        <div class="prose">
-          <p>正在学习从真实问题出发，理解人的需求；也尝试把尚不成熟的想法，一步步做成可以验证的产品。</p>
-          <p>我希望向产品与运营的方向发展。对我来说，理解一个问题，既需要看到具体的使用场景，也需要愿意走进细节，观察一个想法在实践中发生了什么。</p>
-        </div>
-        <blockquote>在观察中理解，<br>在实践中成长。</blockquote>
+        <header class="chapter-header about-header"><p class="eyebrow">02 / 关于我</p><h2 id="about-title">关于我，简要几笔。</h2><p class="chapter-intro">我在学习从真实问题出发，理解人的需求，也尝试把想法做成可以验证的产品。</p></header>
         <dl class="about-facts">
-          <div><dt>希望探索的方向</dt><dd>产品经理 / 产品运营</dd></div>
-          <div><dt>持续关注的话题</dt><dd>AI 应用、历史与社会变化</dd></div>
+          <div><dt>教育背景</dt><dd>安徽大学 · 政治学与行政学<br>2024—2028</dd></div>
+          <div><dt>来自哪里</dt><dd>安徽 · 六安</dd></div>
+          <div><dt>正在探索</dt><dd>产品经理 / 产品运营</dd></div>
+          <div><dt>长期关注</dt><dd>AI 应用、历史与社会变化</dd></div>
         </dl>
-        <p class="editor-note">个人介绍文案为当前草稿；教育信息待补充确认。</p>
         <a class="chapter-next" href="#experience">接下来，看看我的经历 <span aria-hidden="true">→</span></a>
       </section>
 
